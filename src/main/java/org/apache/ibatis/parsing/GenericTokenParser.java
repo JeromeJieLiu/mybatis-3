@@ -34,15 +34,18 @@ public class GenericTokenParser {
     if (text == null || text.isEmpty()) {
       return "";
     }
-    // search open token
+    // 寻找开始的token 的位置
     int start = text.indexOf(openToken);
+    //找不到， 直接返回
     if (start == -1) {
       return text;
     }
     char[] src = text.toCharArray();
+    //开始查找位置
     int offset = 0;
     final StringBuilder builder = new StringBuilder();
     StringBuilder expression = null;
+    //循环匹配
     while (start > -1) {
       if (start > 0 && src[start - 1] == '\\') {
         // this open token is escaped. remove the backslash and continue.
